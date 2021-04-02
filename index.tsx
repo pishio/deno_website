@@ -2,7 +2,7 @@ import { createRouter } from 'https://denopkg.com/keroxp/servest/router.ts';
 import React from 'https://dev.jspm.io/react';
 import ReactDOMServer from 'https://dev.jspm.io/react-dom/server';
 
-import App from './App.tsx';
+import App from 'https://github.com/pishio/deno_website/blob/main/App.tsx';
 
 const router = createRouter();
 router.handle('/', async req => {
