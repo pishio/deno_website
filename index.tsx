@@ -1,25 +1,11 @@
-import React from 'https://dev.jspm.io/react';
-import ReactDOMServer from 'https://dev.jspm.io/react-dom/server';
-
-import App from './App.tsx';
-
-
-
 function handleRequest(request) {
   const { pathname } = new URL(request.url);
 
   // Respond with HTML
-  if (pathname.startsWith("/")) {
-    const html = ReactDOMServer.renderToString(
-      <html>
-        <head>
-          <title>deno react ssr</title>
-        </head>
-        <body>
-          <App />
-        </body>
-      </html>
-    )
+  if (pathname.startsWith("/html")) {
+    const html = `<html>
+      <p><b>Message:</b> Hello from Deno Deploy.</p>
+      </html>`;
 
     return new Response(html, {
       headers: {
@@ -27,6 +13,20 @@ function handleRequest(request) {
         // and the "charset=UTF-8" part implies to the client that the content
         // is encoded using UTF-8.
         "content-type": "text/html; charset=UTF-8",
+      },
+    });
+  }
+
+  // Respond with JSON
+  if (pathname.startsWith("/json")) {
+    // Use stringify function to convert javascript object to JSON string.
+    const json = JSON.stringify({
+      message: "Hello from Deno Deploy",
+    });
+
+    return new Response(json, {
+      headers: {
+        "content-type": "application/json; charset=UTF-8",
       },
     });
   }
