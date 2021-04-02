@@ -1,5 +1,7 @@
-import React from 'https://dev.jspm.io/react';
-import ReactDOMServer from 'https://dev.jspm.io/react-dom/server';
+// @deno-types="https://servestjs.org/@v1.1.3/types/react/index.d.ts"
+import React from "https://dev.jspm.io/react/index.js";
+// @deno-types="https://servestjs.org/@v1.1.3/types/react-dom/server/index.d.ts"
+import ReactDOMServer from "https://dev.jspm.io/react-dom/server.js";
 
 import App from './App.tsx';
 
