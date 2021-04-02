@@ -1,16 +1,16 @@
-import { createRouter } from 'https://denopkg.com/keroxp/servest/router.ts';
 import React from 'https://dev.jspm.io/react';
 import ReactDOMServer from 'https://dev.jspm.io/react-dom/server';
 
-import App from 'https://github.com/pishio/deno_website/blob/main/App.tsx';
+import App from './App.tsx';
 
-const router = createRouter();
-router.handle('/', async req => {
-  await req.respond({
-    headers: new Headers({
-      'content-type': 'text/html; charset=UTF-8'
-    }),
-    body: ReactDOMServer.renderToString(
+
+
+function handleRequest(request) {
+  const { pathname } = new URL(request.url);
+
+  // Respond with HTML
+  if (pathname.startsWith("/")) {
+    const html = ReactDOMServer.renderToString(
       <html>
         <head>
           <title>deno react ssr</title>
@@ -19,9 +19,19 @@ router.handle('/', async req => {
           <App />
         </body>
       </html>
-    ),
-    status: 200
-  })
-});
+    )
 
-router.listen('0.0.0.0:8000');
+    return new Response(html, {
+      headers: {
+        // The "text/html" part implies to the client that the content is HTML
+        // and the "charset=UTF-8" part implies to the client that the content
+        // is encoded using UTF-8.
+        "content-type": "text/html; charset=UTF-8",
+      },
+    });
+  }
+}
+
+addEventListener("fetch", (event) => {
+  event.respondWith(handleRequest(event.request));
+});
