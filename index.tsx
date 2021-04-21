@@ -3,8 +3,7 @@ import React from "https://dev.jspm.io/react/index.js";
 // @deno-types="https://servestjs.org/@v1.1.3/types/react-dom/server/index.d.ts"
 import ReactDOMServer from "https://dev.jspm.io/react-dom/server.js";
 
-import App from "https://github.com/pishio/deno_website/blob/main/App.tsx";
-
+import App from "https://github.com/pishio/deno_website/blob/main/App";
 
 
 function handleRequest(request) {
