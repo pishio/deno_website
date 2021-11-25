@@ -6,7 +6,6 @@
 
 import { serve } from "https://deno.land/std@0.114.0/http/server.ts";
 import { h, renderSSR } from "https://deno.land/x/nano_jsx@v0.0.20/mod.ts";
-import App from "https://github.com/pishio/deno_website/blob/main/App.tsx";
 
 function App() {
   return (
@@ -20,12 +19,6 @@ function App() {
     </html>
   );
 }
-
-
-
-console.log("Listening on http://localhost:8000");
-await serve(handler)
-
 
 function handleRequest(request) {
 
