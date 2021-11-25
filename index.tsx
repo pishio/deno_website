@@ -24,7 +24,7 @@ function App() {
 
 
 console.log("Listening on http://localhost:8000");
-await serve(handler);
+await serve(handler)
 
 
 function handleRequest(request) {
@@ -36,10 +36,10 @@ function handleRequest(request) {
     headers: {
       "content-type": "text/html; charset=UTF-8",
     },
-  });
+  })
   
 }
 
 addEventListener("fetch", (event) => {
-  event.respondWith(handleRequest(event.request));
-});
+  event.respondWith(handleRequest(event.request))
+})

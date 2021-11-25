@@ -1,3 +1,3 @@
-const App = () => (<div>Hello Deno React</div>);
+const App = () => (<div>Hello Deno React</div>)
 
-export default App;
+export default App
