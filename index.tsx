@@ -1,23 +1,35 @@
-// @deno-types="https://servestjs.org/@v1.1.3/types/react/index.d.ts"
-import React from "https://dev.jspm.io/react/index.js";
-// @deno-types="https://servestjs.org/@v1.1.3/types/react-dom/server/index.d.ts"
-import ReactDOMServer from "https://dev.jspm.io/react-dom/server.js";
+/** @jsx h */
+/// <reference no-default-lib="true"/>
+/// <reference lib="dom" />
+/// <reference lib="dom.asynciterable" />
+/// <reference lib="deno.ns" />
 
-import App from "https://github.com/pishio/deno_website/blob/main/App";
+import { serve } from "https://deno.land/std@0.114.0/http/server.ts";
+import { h, renderSSR } from "https://deno.land/x/nano_jsx@v0.0.20/mod.ts";
+import App from "https://github.com/pishio/deno_website/blob/main/App.tsx";
+
+function App() {
+  return (
+    <html>
+      <head>
+        <title>Hello from JSX</title>
+      </head>
+      <body>
+        <h1>Hello world</h1>
+      </body>
+    </html>
+  );
+}
+
+
+
+console.log("Listening on http://localhost:8000");
+await serve(handler);
 
 
 function handleRequest(request) {
 
-  const html = ReactDOMServer.renderToString(
-    <html>
-      <head>
-        <title>deno react ssr</title>
-      </head>
-      <body>
-        <App />
-      </body>
-    </html>
-  )
+  const html = renderSSR(<App />);
 
   return new Response(
     html, {
