@@ -6,18 +6,33 @@
 
 import { serve } from "https://deno.land/std@0.114.0/http/server.ts";
 import { h, renderSSR } from "https://deno.land/x/nano_jsx@v0.0.20/mod.ts";
-import App from "./App.tsx";
+
+function App() {
+  return (
+    <html>
+      <head>
+        <title>Hello from JSX</title>
+      </head>
+      <body>
+        <h1>Hello world</h1>
+      </body>
+    </html>
+  );
+}
 
 function handleRequest(request) {
+
   const html = renderSSR(<App />);
 
-  return new Response(html, {
+  return new Response(
+    html, {
     headers: {
       "content-type": "text/html; charset=UTF-8",
     },
-  });
+  })
+  
 }
 
 addEventListener("fetch", (event) => {
-  event.respondWith(handleRequest(event.request));
-});
+  event.respondWith(handleRequest(event.request))
+})
